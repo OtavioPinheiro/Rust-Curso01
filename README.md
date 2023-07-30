@@ -78,7 +78,7 @@ fn main() {
 }
 ```
 
-Muito similar a uma constante, temos as **variáveis globais** que são declaradas usando a palavra `static`. E, assim como as constantes, <u>precisam ter os tipos e os valores informados no momento da declaração</u> e não aceitam valores variáveis, ou seja, <u>não é permitido associar a uma variável global ou a uma constante um valor que necessite executar uma função ou acessar um API para existir</u>, o valor precisa ser constante.
+Muito similar a uma constante, temos as **variáveis globais** que são declaradas usando a palavra `static`. E, assim como as constantes, <ins>precisam ter os tipos e os valores informados no momento da declaração</ins> e não aceitam valores variáveis, ou seja, <ins>não é permitido associar a uma variável global ou a uma constante um valor que necessite executar uma função ou acessar um API para existir</ins>, o valor precisa ser constante.
 
 Exemplo:
 ```rust
