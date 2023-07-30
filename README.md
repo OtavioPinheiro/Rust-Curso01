@@ -6,6 +6,7 @@
 3. [Declaração de variáveis](#declaração-de-variáveis)
 4. [Tipos primitivos](#tipos-primitivos)
 5. [Variáveis e constantes](#variáveis-e-constantes)
+6. [Escopo](#escopo)
 
 # O que é RUST?
 Rust é uma linguagem de programação com o foco em:
@@ -53,7 +54,7 @@ fn main() {
 }
 ```
 
-Mais sobres os tipos primitivos em Rust em:
+**Mais sobres os tipos primitivos em Rust em:**
 - [Biblioteca padrão do RUST](https://doc.rust-lang.org/std/index.html)
 - [Aprenda por exemplos](https://doc.rust-lang.org/rust-by-example/primitives.html)
   
@@ -110,3 +111,5 @@ fn main() {
 
 **Para saber um pouco mais sobre operações inseguras no Rust:**
 - [Rust Unsafe — uma introdução à parte da linguagem que nos dá super poderes - Franklyn Sancho](https://franklyn-sanc.medium.com/rust-unsafe-uma-introdu%C3%A7%C3%A3o-%C3%A0-parte-da-linguagem-que-nos-d%C3%A1-super-poderes-24f54bf8cca2)
+
+## Escopo
