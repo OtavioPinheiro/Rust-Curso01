@@ -1,4 +1,4 @@
-# Curso de RUST - Entendendo o básico da linguagem
+# Curso de RUST :crab: - Entendendo o básico da linguagem
 
 # Sumário
 1. [O que é RUST?](#o-que-é-rust)
@@ -18,6 +18,7 @@ A linguagem Rust é mais usada para desenvolver aplicações de linha de comando
 **FONTES**: 
 - [RUST](https://www.rust-lang.org/)
 - [What is Runtime in Rust?](https://stackoverflow.com/questions/68188420/what-is-runtime-in-rust)
+- [Comprehensive Rust](https://google.github.io/comprehensive-rust/pt-BR/index.html)
 
 
 # Conceitos básicos do Rust
@@ -46,6 +47,9 @@ fn main() {
 
     let booleana:bool = false;
     println!("Tamanho booleana = {}", std::mem::size_of_val(&booleana));
+
+    let letra:char = 'C';
+    println!("Tamanho do char = {}", std::mem::size_of_val(&letra));
 }
 ```
 
@@ -54,3 +58,55 @@ Mais sobres os tipos primitivos em Rust em:
 - [Aprenda por exemplos](https://doc.rust-lang.org/rust-by-example/primitives.html)
   
 ## Variáveis e constantes
+No Rust uma variável é imutável por padrão, para modificar esse comportamento temos que informar ao Rust de que se trata de uma variável mutável por meio da palavra `mut` antes do nome da variável e depois de `let`.
+
+Exemplo:
+```rust
+fn main() {
+    let mut variavel = false;
+    variavel = false;
+}
+```
+
+A ***diferença entre variável imutável e constante no Rust*** é que, no caso das variáveis, mesmo que sejam imutáveis, possuem um endereço de memória, alocado pelo compilador, onde está o valor da variável e, em tempo de execução, o valor é recuperado da pilha de memória para ser usado pelo programa. No caso das constantes não há esta alocação de memória, pois em tempo de compilação, o compilador substituirá todas as constantes pelos seus respectivos valores informados na momento da declaração da constante.
+
+Exemplo de declaração de uma constante:
+```rust
+fn main() {
+    const PI:f32 = 3.14;
+    println!("PI = {}", PI);
+}
+```
+
+Muito similar a uma constante, temos as **variáveis globais** que são declaradas usando a palavra `static`. E, assim como as constantes, <u>precisam ter os tipos e os valores informados no momento da declaração</u> e não aceitam valores variáveis, ou seja, <u>não é permitido associar a uma variável global ou a uma constante um valor que necessite executar uma função ou acessar um API para existir</u>, o valor precisa ser constante.
+
+Exemplo:
+```rust
+static GLOBAL:f32 = 1.22;
+fn main() {
+    println!("GLOBAL = {}", GLOBAL);
+}
+```
+
+É possível deixar a **variável global como mutável**, porém o Rust não permitirá a execução do código pois dirá que o código é inseguro. Para contornar isso é possível usar a função ou bloco `unsafe`. Neste caso o desenvolvedor entende e assumi os riscos de se usar uma variável global mutável.
+
+Exemplo:
+```rust
+static mut GLOBAL:f32 = 1.22;
+fn main() {
+    unsafe {
+        println!("GLOBAL insegura = {}", GLOBAL);
+    }
+}
+```
+
+**FONTES:**
+- [Sobre constantes](https://doc.rust-lang.org/std/keyword.const.html)
+- [Constants](https://doc.rust-lang.org/rust-by-example/custom_types/constants.html?highlight=const#constants)
+- [Sobre variáveis estáticas](https://doc.rust-lang.org/std/keyword.static.html)
+- [Static](https://doc.rust-lang.org/rust-by-example/scope/lifetime/static_lifetime.html?highlight=static#static)
+- [Sobre unsafe](https://doc.rust-lang.org/std/keyword.unsafe.html)
+- [Unsafe operations](https://doc.rust-lang.org/rust-by-example/unsafe.html)
+
+**Para saber um pouco mais sobre operações inseguras no Rust:**
+- [Rust Unsafe — uma introdução à parte da linguagem que nos dá super poderes - Franklyn Sancho](https://franklyn-sanc.medium.com/rust-unsafe-uma-introdu%C3%A7%C3%A3o-%C3%A0-parte-da-linguagem-que-nos-d%C3%A1-super-poderes-24f54bf8cca2)
