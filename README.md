@@ -126,16 +126,6 @@ fn main() {
 }
 ```
 
-<ins style="background-color: #FA2500">**Observação:**</ins>
-Diferente de outras linguagens de programação mais famosas, o Rust permite a redeclaração de variáveis, ou seja, o código abaixo em Rust é válido e gera um *warning*, mas é compilado sem problemas.
-
-Redeclarando variável:
-```rust
-let variavel:i8 = 10;
-let variavel:i8 = 12;
-println!("Variável = {}", variavel);
-```
-
 ### Shadowing
 Diferente de outras linguagens de programação mais famosas, o Rust permite a redeclaração de variáveis, ou seja, o código abaixo em Rust é válido e gera um *warning*, mas é compilado sem problemas.
 
@@ -161,7 +151,7 @@ fn sombra() {
         let a = "texto";
         println!("[dentro] a = {}", a);
     }
-    
+
     println!("[fora] a = {}", a);
 }
 ```
