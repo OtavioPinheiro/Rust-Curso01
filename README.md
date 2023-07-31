@@ -113,3 +113,59 @@ fn main() {
 - [Rust Unsafe — uma introdução à parte da linguagem que nos dá super poderes - Franklyn Sancho](https://franklyn-sanc.medium.com/rust-unsafe-uma-introdu%C3%A7%C3%A3o-%C3%A0-parte-da-linguagem-que-nos-d%C3%A1-super-poderes-24f54bf8cca2)
 
 ## Escopo
+Em Rust, assim como em outras linguagens de programação como C, C++, C#, Java, etc, um escopo é definido por um bloco `{}` e **as variáveis definidas dentro do escopo só estarão acessíveis àquele escopo**. É possível criar escopo vazios e anônimos.
+
+**Exemplo:**
+```rust
+fn main() {
+    let a = 3;
+
+    {
+        let b = 5;
+    }
+}
+```
+
+<ins style="background-color: #FA2500">**Observação:**</ins>
+Diferente de outras linguagens de programação mais famosas, o Rust permite a redeclaração de variáveis, ou seja, o código abaixo em Rust é válido e gera um *warning*, mas é compilado sem problemas.
+
+Redeclarando variável:
+```rust
+let variavel:i8 = 10;
+let variavel:i8 = 12;
+println!("Variável = {}", variavel);
+```
+
+### Shadowing
+Diferente de outras linguagens de programação mais famosas, o Rust permite a redeclaração de variáveis, ou seja, o código abaixo em Rust é válido e gera um *warning*, mas é compilado sem problemas.
+
+Redeclarando variável:
+```rust
+let variavel:i8 = 10;
+let variavel:i8 = 12;
+println!("Variável = {}", variavel);
+```
+
+O conceito de *shadowing* é parecido com a redeclaração mas se aplicando a um escopo menor no código e também pode envolver mudança do tipo da variável, ou seja, com a funcionalidade *shadowing* é possível declarar uma variável com o mesmo nome em um escopo menor e, ainda, é possível mudar o tipo da variáve.
+
+**Exemplo:**
+```rust
+fn sombra() {
+    let a = 123;
+    println!("[fora] a = {}", a);
+
+    {
+        let b = 22;
+        println!("[dentro] b = {}", b);
+
+        let a = "texto";
+        println!("[dentro] a = {}", a);
+    }
+    
+    println!("[fora] a = {}", a);
+}
+```
+
+**FONTES:**
+- [Scope and Shadowing](https://doc.rust-lang.org/rust-by-example/variable_bindings/scope.html)
+- [Shadowing and Temporary Mutability in Rust - Thorsten Hans](https://www.thorsten-hans.com/shadowing-temporary-mutability-rust/)
