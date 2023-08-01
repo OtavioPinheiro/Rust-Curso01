@@ -7,6 +7,8 @@
 4. [Tipos primitivos](#tipos-primitivos)
 5. [Variáveis e constantes](#variáveis-e-constantes)
 6. [Escopo](#escopo)
+   1. [Shadowing](#shadowing)
+7. []()
 
 # O que é RUST?
 Rust é uma linguagem de programação com o foco em:
@@ -159,3 +161,6 @@ fn sombra() {
 **FONTES:**
 - [Scope and Shadowing](https://doc.rust-lang.org/rust-by-example/variable_bindings/scope.html)
 - [Shadowing and Temporary Mutability in Rust - Thorsten Hans](https://www.thorsten-hans.com/shadowing-temporary-mutability-rust/)
+
+## Funções
+No Rust, por padrão, se não for especificado o retorno da função, então a função não retorna nada.
