@@ -163,4 +163,23 @@ fn sombra() {
 - [Shadowing and Temporary Mutability in Rust - Thorsten Hans](https://www.thorsten-hans.com/shadowing-temporary-mutability-rust/)
 
 ## Funções
-No Rust, por padrão, se não for especificado o retorno da função, então a função não retorna nada.
+Para declarar uma função em Rust usa-se a palavra reservada `fn`, seguido do nome da função, dos parâmetros detro dos parêntesis `()` e, se houver, o retorno da função, definido pelo uso de uma seta `->`. No Rust, por padrão, se não for especificado o retorno da função, então a função não retorna nada. 
+
+Vale lembrar que, caso a função necessite de parâmetros e/ou retorne algo, é necessário informar o tipo dos parâmetros esperados pela função e o tipo do retorno.
+
+**Exemplo:**
+```rust
+fn soma(a:i32, b:i32) -> i32 {
+    println!("O resultado da soma de {} + {} = {}", a, b, a + b);
+    a + b
+}
+```
+
+**Observação:** Em Rust tudo é uma expressão, então caso desejarmos utilizar o resultado da função definida acima em outra parte do código, temos que retornar o valor da soma e para isso podemos não colocar o `;` na última instrução da função, desta o Rust irá interpretar isso como sendo o retorno ou podemos utilizar o `return`, que é o padrão para a maioria das linguagens de programação.
+
+Exemplo de utilização da função soma como expressão:
+```rust
+fn main() {
+    println!("Valor da soma é: {}", soma(a, b));
+}
+```
