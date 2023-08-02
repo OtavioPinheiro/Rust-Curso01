@@ -8,7 +8,8 @@
 5. [Variáveis e constantes](#variáveis-e-constantes)
 6. [Escopo](#escopo)
    1. [Shadowing](#shadowing)
-7. []()
+7. [Funções](#funções)
+8. [Condicionais](#condicionais)
 
 # O que é RUST?
 Rust é uma linguagem de programação com o foco em:
@@ -181,5 +182,51 @@ Exemplo de utilização da função soma como expressão:
 ```rust
 fn main() {
     println!("Valor da soma é: {}", soma(a, b));
+}
+```
+
+## Condicionais
+Em Rust, assim como na maioria das outras linguagens, a declaração `if` é a mais conhecida quando o assunto é condicionais. Mas, vale ressaltar que, em Rust, também temos o `match` que é similar com o `switch-case` de linguagens como Java, C, C++, C#, etc.
+
+Uma peculiaridade do Rust em relação ao `if` é que, como tudo é uma expressão em Rust, podemos atribuir o resultado do `if` a uma variável.
+
+**Exemplo 01:**
+```rust
+fn main() {
+    let responsavel_autorizou = false;
+    let idade:i8 = 17;
+
+    if idade >= 18 {
+        println!("Pode entrar na balada");
+    } else if idade > 16 && responsavel_autorizou {
+        println!("Pode entrar com a assinatura do responsável");
+    } else {
+        println!("Não pode entrar");
+    }
+}
+```
+
+**Exemplo 02:**
+```rust
+fn main() {
+    let idade:i8 = 20;
+    let eh_maior = idade >= 18;
+
+    let condicao = if eh_maior { "maior" } else { "menor" };
+    println!("É {} de idade", condicao);
+}
+```
+
+Quando estiver usando o `match` é importante sempre usar a expressão coringa `_` para designar todos os outros cenários não cobertos. Caso algum cenário possível não seja coberto, o código não será compilado e o compilador do Rust irá informar para usar o `_` no `match` para cobrir todos os casos possíveis. Vale lembrar, caso a instrução do `match` possua apenas uma linha, ao final deve ser usado a vírgula `,`, mesmo na última instrução. Caso seja instruções de múltiplas linhas, a vírgula é opicional, mas é necessário utilizar as chaves `{}`
+
+**Exemplo:**
+```rust
+let idade:i8 = 17;
+let eh_maior = idade >= 18;
+let condicao = if eh_maior { "maior" } else { "menor" };
+
+match condicao {
+    "maior" => { println!("Pode entrar na balada") }
+    _ => println!("Não pode entrar na balada"),
 }
 ```
