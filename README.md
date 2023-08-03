@@ -19,6 +19,8 @@ Rust é uma linguagem de programação com o foco em:
 
 A linguagem Rust é mais usada para desenvolver aplicações de linha de comando (CLI), aplicações web e aplicações para serem executadas em sistemas embarcados.
 
+[Sumário](#sumário)
+
 **FONTES**: 
 - [RUST](https://www.rust-lang.org/)
 - [What is Runtime in Rust?](https://stackoverflow.com/questions/68188420/what-is-runtime-in-rust)
@@ -36,11 +38,12 @@ fn main() {
     println!("variável = {}", variavel);
 }
 ```
+[Sumário](#sumário)
 
 ## Tipos primitivos
 No Rust, quando declaramos uma variável, podemos informar qual o tipo da variável. Fazemos isso após o nome da variável, seguido por dois pontos `:`. Note que, informar o tipo da variável em Rust é opicional! Caso não informe, o Rust irá fazer isso automáticamente, assumindo um padrão. Como, por exemplo, se declararmos uma variável com o valor 300 e não informarmos o tipo, por padrão o Rust irá assumir que o tipo é `i32`.
 
-Exemplo:
+**Exemplo:**
 ```rust
 fn main() {
     let variavel = 300;
@@ -56,6 +59,7 @@ fn main() {
     println!("Tamanho do char = {}", std::mem::size_of_val(&letra));
 }
 ```
+[Sumário](#sumário)
 
 **Mais sobres os tipos primitivos em Rust em:**
 - [Biblioteca padrão do RUST](https://doc.rust-lang.org/std/index.html)
@@ -64,7 +68,7 @@ fn main() {
 ## Variáveis e constantes
 No Rust uma variável é imutável por padrão, para modificar esse comportamento temos que informar ao Rust de que se trata de uma variável mutável por meio da palavra `mut` antes do nome da variável e depois de `let`.
 
-Exemplo:
+**Exemplo:**
 ```rust
 fn main() {
     let mut variavel = false;
@@ -74,7 +78,7 @@ fn main() {
 
 A ***diferença entre variável imutável e constante no Rust*** é que, no caso das variáveis, mesmo que sejam imutáveis, possuem um endereço de memória, alocado pelo compilador, onde está o valor da variável e, em tempo de execução, o valor é recuperado da pilha de memória para ser usado pelo programa. No caso das constantes não há esta alocação de memória, pois em tempo de compilação, o compilador substituirá todas as constantes pelos seus respectivos valores informados na momento da declaração da constante.
 
-Exemplo de declaração de uma constante:
+**Exemplo de declaração de uma constante:**
 ```rust
 fn main() {
     const PI:f32 = 3.14;
@@ -84,7 +88,7 @@ fn main() {
 
 Muito similar a uma constante, temos as **variáveis globais** que são declaradas usando a palavra `static`. E, assim como as constantes, <ins>precisam ter os tipos e os valores informados no momento da declaração</ins> e não aceitam valores variáveis, ou seja, <ins>não é permitido associar a uma variável global ou a uma constante um valor que necessite executar uma função ou acessar um API para existir</ins>, o valor precisa ser constante.
 
-Exemplo:
+**Exemplo:**
 ```rust
 static GLOBAL:f32 = 1.22;
 fn main() {
@@ -94,7 +98,7 @@ fn main() {
 
 É possível deixar a **variável global como mutável**, porém o Rust não permitirá a execução do código pois dirá que o código é inseguro. Para contornar isso é possível usar a função ou bloco `unsafe`. Neste caso o desenvolvedor entende e assumi os riscos de se usar uma variável global mutável.
 
-Exemplo:
+**Exemplo:**
 ```rust
 static mut GLOBAL:f32 = 1.22;
 fn main() {
@@ -103,6 +107,7 @@ fn main() {
     }
 }
 ```
+[Sumário](#sumário)
 
 **FONTES:**
 - [Sobre constantes](https://doc.rust-lang.org/std/keyword.const.html)
@@ -128,6 +133,7 @@ fn main() {
     }
 }
 ```
+[Sumário](#sumário)
 
 ### Shadowing
 Diferente de outras linguagens de programação mais famosas, o Rust permite a redeclaração de variáveis, ou seja, o código abaixo em Rust é válido e gera um *warning*, mas é compilado sem problemas.
@@ -158,6 +164,7 @@ fn sombra() {
     println!("[fora] a = {}", a);
 }
 ```
+[Sumário](#sumário)
 
 **FONTES:**
 - [Scope and Shadowing](https://doc.rust-lang.org/rust-by-example/variable_bindings/scope.html)
@@ -184,6 +191,7 @@ fn main() {
     println!("Valor da soma é: {}", soma(a, b));
 }
 ```
+[Sumário](#sumário)
 
 ## Condicionais
 Em Rust, assim como na maioria das outras linguagens, a declaração `if` é a mais conhecida quando o assunto é condicionais. Mas, vale ressaltar que, em Rust, também temos o `match` que é similar com o `switch-case` de linguagens como Java, C, C++, C#, etc.
@@ -228,5 +236,66 @@ let condicao = if eh_maior { "maior" } else { "menor" };
 match condicao {
     "maior" => { println!("Pode entrar na balada") }
     _ => println!("Não pode entrar na balada"),
+}
+```
+[Sumário](#sumário)
+
+## Loops (Estruturas de repetição)
+Estruturas de repetição ou laços (*loops*) são usadas na linguagem de programação para fazer com que o *software* execute uma determinada ação ou tarefa repetidas vezes. Os laços mais famosos e conhecidos são `for` e `while`. Em Rust, também temos o `loop` que é uma estrutura de repetição que é executada indefinidamente até encontrar uma condição de parada e a palavra reservada `break`. No Rust, o `for` possui algumas peculiaridades, se assemelhando com o `for each` de algumas linguagens. Uma dessas semelhanças é que o `for` no Rust percorre intervalos (ou itaradores). Um exemplo de intervalos seria `1..11` que significa um intervalo de 1 a 10, pois o 11 não está incluído no intervalo, ou, da mesma forma, podemos escrever este mesmo intervalo da seguinte maneira `1..=10`.
+
+Código de exemplo dos laços de repetição citados.
+
+**Exemplo 01:**
+```rust
+fn main() {
+    let numero:i8 = 7;
+    let mut multiplicador:i8 = 1;
+    
+    while multiplicador <= 10 {
+        println!("{} x {} = {}", numero, multiplicador, numero * multiplicador);
+        multiplicador += 1;
+    } 
+}
+```
+
+**Exemplo 02:**
+```rust
+fn main() {
+    let numero:i8 = 6;
+    let mut multiplicador:i8 = 1;
+    
+    loop {
+        println!("{} x {} = {}", numero, multiplicador, numero * multiplicador);
+        multiplicador += 1;
+        
+        if multiplicador == 11 {
+            break;
+        }
+    } 
+}
+```
+
+**Exemplo 03:**
+```rust
+fn main() {
+    let numero:i8 = 8;
+    
+    for multiplicador in 1..=10 {
+        println!("{} x {} = {}", numero, multiplicador, numero * multiplicador);
+    } 
+}
+```
+
+É importante lembrar que em Rust, assim como em Python por exemplo, temos o `continue` que serve para pular para a próxima iteração. Então, caso queiramos exibir apenas os números pares de 1 a 10, podemos utilizar o `continue` para pular para próxima iteração toda vez que a condição de um número par for satisfeita.
+
+**Exemplo 04:**
+```rust
+fn main() {
+    for numero in 1..=10 {
+        if numero % 2 != 0 {
+            continue
+        }
+        println!("{} é par", numero);
+    } 
 }
 ```
