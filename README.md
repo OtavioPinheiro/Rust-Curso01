@@ -10,6 +10,7 @@
 7. [Shadowing](#shadowing)
 8. [Funções](#funções)
 9. [Condicionais](#condicionais)
+10. []()
 
 # O que é RUST?
 Rust é uma linguagem de programação com o foco em:
@@ -299,3 +300,36 @@ fn main() {
     } 
 }
 ```
+[Sumário](#sumário)
+
+# Ownership
+Para o melhor entendimento dessa seção é recomendável o conhecimento básico sobre alocação de memória (*Stack* e *Heap*). 
+Para saber mais sobre *Stack* e *Heap*:
+- [Heap vs Stack - Gustavo Pantuza](https://blog.pantuza.com/artigos/heap-vs-stack)
+- [Gerenciamento de memória - Stack vs Heap | Dias de Dev - Dias de Dev por Vinicius Dias](https://www.youtube.com/watch?v=7kJwVQGJCbw)
+
+*Ownership* em Rust é um tipo de gerenciamento de memória. Temos o gerenciamento de memória manual, onde o desenvolvedor é responsável por alocar e desalocar espaço da memória, ou seja, todo o processo de gerenciamento de memória fica por conta do desenvolver. Temos o *garbage collector*, ou (na tradução livre) coletor de lixo, que é um processo executado por de baixo dos panos (em *background*), responsável por desalocar (liberar) a memória da *heap*. Temos, ainda, uma terceira forma de gerenciamento de memória que é usada pelo Rust que é a *ownership*, que, basicamente, significa que cada dado, valor ou conjuto de dados ou valores armazenados na *heap* só poderão ter um único dono.
+
+Contextualizando, quando passamos, por exemplo, uma *string* por parâmetro para uma função em Rust, sendo que esta *string* pertencia a um escopo, temos o *move semantics*, ou seja, a variável que continha a *string*, sendo ela um ponteiro, passa a ter um valor inválido dentro do escopo que foi declarada, porque ela trocou de "dono" no momento em foi passado como parâmetro para a função.
+
+**Exemplo:**
+```rust
+fn ownership() {
+    let uma_string = String::from("Teste");
+    rouba(uma_string);
+
+    println!("{}", uma_string);
+}
+
+fn rouba(string: String) {
+    println!("{}", string);
+}
+```
+
+No código acima temos a variável `uma_string` que é do tipo `String` e é alocada na *heap*. Quando passamos essa variável como parâmetro para a função `rouba`, a função torna-se o novo dono do endereço de memória que representa o valor da variável `uma_string`, ou seja, local na memória onde está armazenado o valor desta string. Isso significa que agora quem pode manipular e ter acesso ao valor dessa variável é a função `rouba`. Quando a função termina de ser executada, ela sai de escopo e as variáveis, os parâmetros e todos os valores dentro deste escopo tem seu endereço de memória liberado, logo, como a função era a dona do endereço de memória referente ao valor da variável `uma_string`, quando ela termina de ser executada, a variável `uma_string` passa a ter o valor inválido. Esse é o comportamento esperado para o gerenciamento de memória por *ownership*.
+
+Para saber mais sobre *ownership*:
+- [Understanding Ownership](https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html)
+- [What Is Ownership?](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html)
+
+[Sumário](#sumário)
