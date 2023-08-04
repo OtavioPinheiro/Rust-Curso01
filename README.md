@@ -7,9 +7,9 @@
 4. [Tipos primitivos](#tipos-primitivos)
 5. [Variáveis e constantes](#variáveis-e-constantes)
 6. [Escopo](#escopo)
-   1. [Shadowing](#shadowing)
-7. [Funções](#funções)
-8. [Condicionais](#condicionais)
+7. [Shadowing](#shadowing)
+8. [Funções](#funções)
+9. [Condicionais](#condicionais)
 
 # O que é RUST?
 Rust é uma linguagem de programação com o foco em:
