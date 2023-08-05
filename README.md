@@ -10,7 +10,9 @@
 7. [Shadowing](#shadowing)
 8. [Funções](#funções)
 9. [Condicionais](#condicionais)
-10. []()
+10. [Loops - Estruturas de repetição](#loops-estruturas-de-repetição)
+11. [*Ownership*](#ownership)
+12. [*Borrowing*](#borrowing)
 
 # O que é RUST?
 Rust é uma linguagem de programação com o foco em:
@@ -390,3 +392,6 @@ fn rouba(string: &mut String) {
 
 **Para saber mais sobre *borrowing*:**
 - [References and Borrowing](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html)
+
+[Sumário](#sumário)
+
