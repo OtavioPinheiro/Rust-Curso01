@@ -315,7 +315,8 @@ Contextualizando, quando passamos, por exemplo, uma *string* por parâmetro para
 **Exemplo:**
 ```rust
 fn ownership() {
-    let uma_string = String::from("Teste");
+    let uma_string = String::from("Teste"); //uso o método String::from() para que a string seja armazenada na heap
+                                    // porque trata-se de uma string que pode variar o seu tamanho
     rouba(uma_string);
 
     println!("{}", uma_string);
@@ -333,3 +334,59 @@ Para saber mais sobre *ownership*:
 - [What Is Ownership?](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html)
 
 [Sumário](#sumário)
+
+## Borrowing
+Para resolver o problema anterior, ou seja, passar uma variável, que é um ponteiro (possui seu valor armazenado na *heap*), para uma função e continuar a usar a variável depois que a função for encerrada, podemos fazer com que a função retorne uma variável do mesmo tipo e esse retorno será usado no lugar da antiga variável. Ou podemos passar uma referência para a função ao invés de passar a variável em si, isso é chamado de *borrowing* em Rust. Em outras palavras, iremos emprestar o valor para a função executar a tarefa, desta forma o *ownership* não é perdido para a função, logo a variável não terá um valor inválido depois que a função for encerrada.
+
+**Exemplo retornando um valor da função**
+```rust
+fn main() {
+    let uma_string = String::from("teste"); //declarando uma string com tamanho indefinido
+
+    let outra_string = rouba(uma_string);
+
+    println!("{}", outra_string);
+}
+
+fn rouba(string: String) {
+    println!("{}", string);
+
+    string;
+}
+```
+
+**Exemplo de *borrowing*:**
+```rust
+fn main() {
+    let uma_string = String::from("teste");
+
+    rouba(&uma_string);
+
+    println!("{}", uma_string);
+}
+
+fn rouba(string: &String) {
+    println!("{}", string);
+}
+```
+
+Caso queiramos modificar a referência passada para a função, precisamos tornar a variável e a referência mutáveis adicionando a palavra `mut`.
+
+**Exemplo de *borrowing* com uma referência mutável:**
+```rust
+fn main() {
+    let mut uma_string = String::from("teste");
+
+    rouba(&mut uma_string);
+
+    println!("{}", uma_string);
+}
+
+fn rouba(string: &mut String) {
+    string.push_str(" testando");
+    println!("{}", string);
+}
+```
+
+**Para saber mais sobre *borrowing*:**
+- [References and Borrowing](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html)
