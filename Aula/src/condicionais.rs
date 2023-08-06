@@ -18,4 +18,14 @@ fn main() {
         "maior" => { println!("Pode entrar") }
         _ => println!("Não pode entrar"),
     }
+
+    let valor = 10;
+    for i in 0..=valor {
+        println!("{}: {}", i, match i {
+                1..=4 => "É pouco",
+                _ if i % 2 == 0 => "É par",
+                _ => "É impar"
+            }
+        );
+    }
 }

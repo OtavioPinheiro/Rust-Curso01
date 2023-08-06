@@ -13,6 +13,7 @@
 10. [Loops - Estruturas de repetição](#loops-estruturas-de-repetição)
 11. [*Ownership*](#ownership)
 12. [*Borrowing*](#borrowing)
+13. [Tratamento de erros](#tratamento-de-erros)
 
 # O que é RUST?
 Rust é uma linguagem de programação com o foco em:
@@ -241,6 +242,22 @@ match condicao {
     _ => println!("Não pode entrar na balada"),
 }
 ```
+
+**Exemplo de match com if**
+```rust
+fn main() {
+    let valor = 10;
+    for i in 0..=valor {
+        println!("{}: {}", i, match i {
+                1..=4 => "É pouco",
+                _ if i % 2 == 0 => "É par",
+                _ => "É impar"
+            }
+        );
+    }
+}
+```
+
 [Sumário](#sumário)
 
 ## Loops (Estruturas de repetição)
@@ -395,3 +412,42 @@ fn rouba(string: &mut String) {
 
 [Sumário](#sumário)
 
+# Tratamento de erros
+No Rust, basicamente, erros são irrecuperáveis, não há uma estrutura como `try`-`catch`. Porém podemos lançar o erro/exceção.
+
+Para lançar um erro ou uma exceção em Rust usamos a macro `panic!` e passamos uma mensagem, parecido com `throw new Exception("Mensagem de erro personalizada")` em Java ou em C#. É possível também definir a variável de ambiente `RUST_BACKTRACE=1` para habilitar o *backtrace* e ter uma visão mais detalhada sobre onde o erro ocorreu, ou ainda definir `RUST_BACKTRACE=full` para mostrar o *backtrace* completo.
+
+**Exemplo:**
+```rust
+fn erros() {
+    panic!("Erro!");
+}
+```
+
+Outra maneira é usar o `Result` para recuperar o erro. Neste `Result` é retornado uma `String` em caso de sucesso e um número inteiro em caso de erro.
+
+**Exemplo:**
+```rust
+fn erros() {
+    match resultado() {
+        Ok(s) => println!("Sucesso: {}", s),
+        Err(numero) => println!("Código de erro: {}", numero)
+    };
+}
+
+fn resultado() -> Result<String, u8> {
+    Ok(String::from("Tudo certo"))
+}
+```
+
+Em resumo, o Rust não possui `Exceptions`, ao invés disso possui estas duas formas de tratamento de erros, sendo a primeira, com o uso do `panic!`, a forma irrecuperável e a segunda, a forma recuperável com o `Result`. A forma de erro irrecuperável é quando, por exemplo, tenta-se acessar um índice inexistente de um *array* (ou vetor), acessar o índice 4 de um *array* de tamanho 4, como a contagem começa do 0 (zero), o último elemento terá o índice 3. Esta forma de erro (irrecuperável) são sempre sintomas de um *bug* (defeito) e quando isso ocorre queremos parar a execução do programa imediatamente, logo usamos o `panic!` que interrompe a execução. Já a segunda forma de erro, a recuperável, é quando, por exemplo, tenta-se acessar um arquivo e este arquivo não existe, retornando o erro `file not found`, quando isto ocorre queremos reportar o erro ao usuário e tentar a operação novamente.
+
+Por via de regra quando o compilador possui mais informações sobre o erro é aconselhavél trabalhar com a forma irrecuperável (`panic!`), caso contrário utilizar o `Result<String, u8>`, assim o desenvolvedor ficará responsável por dar mais informações sobre o erro ocorrido.
+
+**Para saber mais:**
+- [Error Handling](https://doc.rust-lang.org/book/ch09-00-error-handling.html)
+- [Unrecoverable Errors with panic!](https://doc.rust-lang.org/book/ch09-01-unrecoverable-errors-with-panic.html)
+- [Recoverable Errors with Result](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#propagating-errors)
+- [To panic! or Not to panic!](https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html)
+
+[Sumário](#sumário)
