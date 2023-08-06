@@ -2,18 +2,19 @@
 
 # Sumário
 1. [O que é RUST?](#o-que-é-rust)
-2. [Conceitos básicos do Rust](#conceitos-básicos-do-rust)
-3. [Declaração de variáveis](#declaração-de-variáveis)
-4. [Tipos primitivos](#tipos-primitivos)
-5. [Variáveis e constantes](#variáveis-e-constantes)
-6. [Escopo](#escopo)
-7. [Shadowing](#shadowing)
-8. [Funções](#funções)
-9. [Condicionais](#condicionais)
-10. [Loops - Estruturas de repetição](#loops-estruturas-de-repetição)
-11. [*Ownership*](#ownership)
-12. [*Borrowing*](#borrowing)
-13. [Tratamento de erros](#tratamento-de-erros)
+2. [Ecossistema do Rust](#ecossistema-do-rust-crap)
+3. [Conceitos básicos do Rust](#conceitos-básicos-do-rust)
+4. [Declaração de variáveis](#declaração-de-variáveis)
+5. [Tipos primitivos](#tipos-primitivos)
+6. [Variáveis e constantes](#variáveis-e-constantes)
+7. [Escopo](#escopo)
+8. [Shadowing](#shadowing)
+9. [Funções](#funções)
+10. [Condicionais](#condicionais)
+11. [Loops - Estruturas de repetição](#loops-estruturas-de-repetição)
+12. [*Ownership*](#ownership)
+13. [*Borrowing*](#borrowing)
+14. [Tratamento de erros](#tratamento-de-erros)
 
 # O que é RUST?
 Rust é uma linguagem de programação com o foco em:
@@ -30,6 +31,35 @@ A linguagem Rust é mais usada para desenvolver aplicações de linha de comando
 - [What is Runtime in Rust?](https://stackoverflow.com/questions/68188420/what-is-runtime-in-rust)
 - [Comprehensive Rust](https://google.github.io/comprehensive-rust/pt-BR/index.html)
 
+# Ecossistema do Rust :crap:
+Em Rust, assim como em outra linguagens, podemos escrever o nosso código em um bloco notas qualquer e depois compilar o arquivo, fazemos isso usando o comando `rustc <nome-do-arquivo.rs>`. Porém usar este método para um projeto grande não é viável e nem prático, então para organizar a estrutura do nosso projeto, gerenciar as dependências o Rust conta com o ***Cargo*** (`cargo`).
+
+O ***Cargo*** quando usado para começar um projeto do zero irá criar toda a estrutura padrão do Rust automaticamente que consiste em:
+- Criar a pasta `src`
+- Criar dentro da pasta `src` o arquivo `main.rs`
+- Criar o arquivo `Cargo.toml` na raiz do projeto. Este arquivo contém informações como o nome do projeto, versão e edição do cargo que está sendo utilizada e as dependências do projeto.
+
+```
++--project
+|   +--src
+|       +--main.rs
++--Cargo.toml
+```
+
+## Comandos básicos do Cargo
+| Comando | Funcionalidade |
+|---------|----------------|
+| `cargo --help` | Exibe uma lista dos comandos disponíveis e a funcionalidade. |
+| `cargo new <nome-do-projeto>` | Cria um projeto (pacote `cargo`) Rust do zero, criando também a estrutura padrão de projeto. |
+| `cargo init` | Cria um novo pacote `cargo` dentro de um diretório existente. |
+| `cargo build` | Compila o pacote (projeto) atual. |
+| `cargo run` | Executa um binário. Também pode ser usado para buildar e executar o programa Rust. |
+| `cargo test` | Executa os testes. |
+| `cargo update` | Atualiza a lista de dependências dentro do arquivo `Cargo.lock`. |
+| `cargo install <nome-do-binário>` | Instala um binário Rust na pasta padrão (`$HOME/.cargo/bin`). |
+| `cargo uninstall <nome-do-binário>` | Desinstala um binário Rust. |
+
+[Sumário](#sumário)
 
 # Conceitos básicos do Rust
 ## Declaração de variáveis
