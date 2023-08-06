@@ -2,19 +2,20 @@
 
 # Sumário
 1. [O que é RUST?](#o-que-é-rust)
-2. [Ecossistema do Rust](#ecossistema-do-rust-crap)
-3. [Conceitos básicos do Rust](#conceitos-básicos-do-rust)
-4. [Declaração de variáveis](#declaração-de-variáveis)
-5. [Tipos primitivos](#tipos-primitivos)
-6. [Variáveis e constantes](#variáveis-e-constantes)
-7. [Escopo](#escopo)
-8. [Shadowing](#shadowing)
-9. [Funções](#funções)
-10. [Condicionais](#condicionais)
-11. [Loops - Estruturas de repetição](#loops-estruturas-de-repetição)
-12. [*Ownership*](#ownership)
-13. [*Borrowing*](#borrowing)
-14. [Tratamento de erros](#tratamento-de-erros)
+2. [Ecossistema do Rust](#ecossistema-do-rust-crab)
+3. [Comandos básicos dos Cargo](#comandos-básicos-do-cargo)
+4. [Conceitos básicos do Rust](#conceitos-básicos-do-rust)
+5. [Declaração de variáveis](#declaração-de-variáveis)
+6. [Tipos primitivos](#tipos-primitivos)
+7. [Variáveis e constantes](#variáveis-e-constantes)
+8. [Escopo](#escopo)
+9. [Shadowing](#shadowing)
+10. [Funções](#funções)
+11. [Condicionais](#condicionais)
+12. [Loops - Estruturas de repetição](#loops-estruturas-de-repetição)
+13. [*Ownership*](#ownership)
+14. [*Borrowing*](#borrowing)
+15. [Tratamento de erros](#tratamento-de-erros)
 
 # O que é RUST?
 Rust é uma linguagem de programação com o foco em:
@@ -45,6 +46,8 @@ O ***Cargo*** quando usado para começar um projeto do zero irá criar toda a es
 |       +--main.rs
 +--Cargo.toml
 ```
+
+[Sumário](#sumário)
 
 ## Comandos básicos do Cargo
 | Comando | Funcionalidade |
