@@ -31,7 +31,7 @@ A linguagem Rust é mais usada para desenvolver aplicações de linha de comando
 - [What is Runtime in Rust?](https://stackoverflow.com/questions/68188420/what-is-runtime-in-rust)
 - [Comprehensive Rust](https://google.github.io/comprehensive-rust/pt-BR/index.html)
 
-# Ecossistema do Rust :crap:
+# Ecossistema do Rust :crab:
 Em Rust, assim como em outra linguagens, podemos escrever o nosso código em um bloco notas qualquer e depois compilar o arquivo, fazemos isso usando o comando `rustc <nome-do-arquivo.rs>`. Porém usar este método para um projeto grande não é viável e nem prático, então para organizar a estrutura do nosso projeto, gerenciar as dependências o Rust conta com o ***Cargo*** (`cargo`).
 
 O ***Cargo*** quando usado para começar um projeto do zero irá criar toda a estrutura padrão do Rust automaticamente que consiste em:
