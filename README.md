@@ -16,6 +16,7 @@
 13. [*Ownership*](#ownership)
 14. [*Borrowing*](#borrowing)
 15. [Tratamento de erros](#tratamento-de-erros)
+16. [Arrays](#arrays)
 
 # O que é RUST?
 Rust é uma linguagem de programação com o foco em:
@@ -482,5 +483,71 @@ Por via de regra quando o compilador possui mais informações sobre o erro é a
 - [Unrecoverable Errors with panic!](https://doc.rust-lang.org/book/ch09-01-unrecoverable-errors-with-panic.html)
 - [Recoverable Errors with Result](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#propagating-errors)
 - [To panic! or Not to panic!](https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html)
+
+[Sumário](#sumário)
+
+# Arrays
+Em Rust *arrays* são de tamanho definido, ou seja, não é possível declarar *arrays* dinâmicos, os *arrays* precisam ter o tamanho definido durante o tempo de compilação. Em outras palavras, isso `let algum_array = []` ou isso `let algum_array: [&str, tamanho] = []` não são permitidos. Caso seja necessário criar uma estrutura de dados parecido com *arrays* e que seja dinâmica (que não seja necessário informar o tamanho) é recomendável o uso de vetores.
+
+A forma de se trabalhar com *arrays* em Rust segue o padrão de muitas liguagens de programação conhecidas, como o acesso aos elementos do *array* informando o índice dentro dos colchetes ([]). A maneira de se declarar um *array* é simples, basta informar os elementos dentro dos colchetes ou informar o tipo e o tamanho do *array* ou ambos. Então, temos:
+
+```rust
+fn main() {
+    let primeiro_array = [1, 2, 3, 4, 5];
+    let segundo_array: [u8; 4];
+    let terceiro_array: [&str; 3] = ["test", "dev", "hml"];
+}
+```
+
+vale ressaltar que ao informar o tipo e o tamanho do *array*, essas informações devem estar envolvidas pelos colchetese, separadas pelo ponto e vírgula `;` e precedidos por dois pontos `:`, assim como ilustra o exemplo anterior.
+
+Como os *arrays* possuem iteradores, então é possível utilizar o `for` para percorrer cada um dos elementos, da mesma forma como é feito com o `for each` em outras linguagens.
+
+**Exemplo:**
+```rust
+fn main() {
+    let notas: [f32; 4] = [2.3, 4.5, 10.0, 9.5];
+
+    for nota in notas {
+        println!("As notas são:");
+        println!("\t{}", nota);
+    }
+}
+```
+
+Para acessar o tamanho de *array* contamos com a função `len()` e, se o *array* possui apenas valores repetidos, é possível declarar o *array* de uma forma mais enxuta, informando o valor que se repete e o número de vezes que esse valor se repete.
+
+```rust
+fn main() {
+    let notas_boas: [f32; 4] = [10.0; 4];
+
+    for indice in 0..notas.len() {
+        println!("A nota {} é {}", indice + 1, notas[indice]);
+    }
+}
+```
+
+Também é possível ter *arrays* de *arrays*, ou seja, matrizes.
+
+**Exemplo:**
+```rust
+fn matriz() {
+    let matriz: [[f32; 3]; 2] = [
+        [3.3, 1.2, 0.1],
+        [10.0, 9.0, 8.5]
+    ];
+
+    for linha in 0..matriz.len() {
+        for coluna in 0..matriz[linha].len() {
+            println!("O item da linha {} da coluna {} é {}", linha + 1, coluna + 1, matriz[linha][coluna]);
+        }
+    }
+}
+```
+
+Caso queiramos declarar uma variável para acessar o índice de um *array*, essa variável precisará ser do tipo `usize`. O tipo `usize` significa que a variável ocupa o tamanho necessário para um endereço de memória, independente se o sistema for de 32 bits ou de 64 bits. Ou seja, essa variável em um sistema de 32 bits terá o tamanho de 4 bytes e se for em um sistema de 64 bits terá o tamanho de 8 bytes.
+
+**Para mais informações sobre *arrays* em Rust :crab: :**
+- [Primitive Type array](https://doc.rust-lang.org/std/primitive.array.html)
 
 [Sumário](#sumário)
