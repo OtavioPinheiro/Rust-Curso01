@@ -17,6 +17,11 @@
 14. [*Borrowing*](#borrowing)
 15. [Tratamento de erros](#tratamento-de-erros)
 16. [Arrays](#arrays)
+17. [Enums](#enums)
+18. [Option](#option)
+19. [Generics](#generics)
+20. [Vectors](#vectors)
+
 
 # O que é RUST?
 Rust é uma linguagem de programação com o foco em:
@@ -549,5 +554,102 @@ Caso queiramos declarar uma variável para acessar o índice de um *array*, essa
 
 **Para mais informações sobre *arrays* em Rust :crab: :**
 - [Primitive Type array](https://doc.rust-lang.org/std/primitive.array.html)
+
+[Sumário](#sumário)
+
+# Enums
+**Enums**, ou "enumerações", servem para definir conjuntos de valores discretos e relacionados entre si. Imagine um menu de opções em um restaurante: cada prato do menu é um valor distinto dentro do `enum` "Prato". **Enums** garantem que apenas valores válidos sejam utilizados, evitando erros de digitação ou inconsistências no código. Para utilizar um `enum`, basta declarar uma variável do tipo `enum` e atribuir um de seus valores:
+
+**Exemplos:**
+
+```Rust
+enum Prato {
+    Feijoada,
+    Strogonoff,
+    Pizza,
+}
+
+let pedido: Prato = Prato::Feijoada;
+```
+
+```Rust
+enum Cor {
+    Vermelho,
+    Verde,
+    Azul,
+}
+```
+
+[Sumário](#sumário)
+
+# Option
+O tipo `Option` em **Rust** é um `enum` que tem duas variantes: `Some` e `None`. Ele é usado para expressar a possibilidade de ausência de um valor. `Option` garante que você não terá problemas com `null pointers`, prevenindo _crashes_ e erros inesperados.
+
+**Exemplos:**
+
+```Rust
+let resultado: Option<i32> = Some(42); // Contém o valor 42
+let resultado_vazio: Option<i32> = None; // Não contém nenhum valor
+```
+
+```Rust
+let nome: Option<String> = Some("João".to_string()); // Valor presente
+let idade: Option<i32> = None; // Valor ausente
+```
+
+Para acessar o valor de um `Option`, utilize o método `unwrap` (se você tem certeza que o valor existe) ou `unwrap_or_else` (para definir um valor padrão caso o valor esteja ausente):
+
+```Rust
+let nome_real = nome.unwrap(); // Obter valor presente
+let idade_padrao = idade.unwrap_or_else(|| 0); // Definir valor padrão
+```
+
+[Sumário](#sumário)
+
+# Generics
+Os Generics permitem escrever código em Rust que é genérico em relação ao tipo de dado que está sendo usado. Eles permitem que você escreva funções e estruturas de dados que funcionam com qualquer tipo de dado. Imagine uma função que manipula listas de elementos, mas você não quer escrever a mesma função para cada tipo de elemento (números, strings, etc.). Generics permitem que você defina uma única função que funcione com qualquer tipo de dado. Para definir um `generics` use a sintaxe `<T>`, onde `<T>` representa um tipo genérico, permitindo que uma função funcione com qualquer tipo de dado. Para usar a função, basta especificar o tipo ao chamar a função.
+
+```Rust
+fn meu_print<T>(lista: &Vec<T>) {
+    for item in lista {
+        println!("{}", item);
+    }
+}
+```
+
+```Rust
+let lista_numeros = vec![1, 2, 3];
+meu_print(&lista_numeros);
+
+let lista_strings = vec!["Olá", "Mundo"];
+meu_print(&lista_strings);
+
+```
+
+[Sumário](#sumário)
+
+# Vectors
+Vetores são uma coleção de valores do mesmo tipo, que podem crescer ou diminuir dinamicamente. Imagine uma lista de compras que pode ser modificada à medida que você vai adicionando itens. Vectors permitem essa flexibilidade e eficiência no armazenamento de dados.
+
+Em **Rust**, eles são representados pelo tipo `Vec<T>`. Você pode adicionar elementos a um vetor, acessar elementos individuais pelo índice, etc.
+
+**Exemplos:**
+
+```Rust
+let mut numeros: Vec<i32> = Vec::new(); // Cria um vetor vazio de números inteiros
+numeros.push(1); // Adiciona o número 1 ao vetor
+numeros.push(2); // Adiciona o número 2 ao vetor
+
+println!("O primeiro número é: {}", numeros[0]); // Imprime o primeiro número do vetor
+```
+
+```Rust
+let mut compras: Vec<String> = vec![];
+compras.push("Leite");
+compras.push("Pão");
+compras.push("Frutas");
+
+println!("{:?}", compras); // Exibe a lista de compras
+```
 
 [Sumário](#sumário)
